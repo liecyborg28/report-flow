@@ -255,7 +255,7 @@ export function HeroSection() {
 
 export function FeaturesSection() {
   return (
-    <Box bg="white" py={20} id="features">
+    <Box bg="white" py={20} id="features" minH="100vh">
       <Container maxW="6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -344,6 +344,7 @@ export function HowItWorksSection({ steps }) {
       px={{ base: 6, md: 10 }}
       maxW="6xl"
       mx="auto"
+      minH="100vh"
       id="flow">
       {/* Title */}
       <VStack p={5} textAlign="center" mb={10}>
@@ -399,6 +400,7 @@ export function AboutUsSection() {
       py={{ base: 12, md: 20 }}
       px={{ base: 6, md: 40 }}
       mx="auto"
+      minH="100vh"
       id="about">
       <Flex
         direction={{ base: "column", md: "row" }}
