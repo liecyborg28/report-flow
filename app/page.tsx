@@ -255,8 +255,14 @@ export function HeroSection() {
 
 export function FeaturesSection() {
   return (
-    <Box bg="white" py={20} id="features" minH="100vh">
-      <Container maxW="6xl">
+    <Box
+      bg="white"
+      py={20}
+      id="features"
+      minH="100vh"
+      justifyContent="center"
+      alignItems="center">
+      <Container maxW="6xl" justifyContent="center" alignItems="center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -267,7 +273,7 @@ export function FeaturesSection() {
             fontSize={{ base: "2xl", md: "3xl" }}
             fontWeight="semibold"
             textAlign="center"
-            mb={12}
+            my={12}
             color="gray.800">
             Why Choose Report Flow?
           </Heading>
@@ -353,7 +359,7 @@ export function HowItWorksSection({ steps }) {
           fontSize={{ base: "2xl", md: "3xl" }}
           fontWeight="semibold"
           textAlign="center"
-          mb={12}
+          my={12}
           color="gray.800">
           How It Works?
         </Heading>
@@ -397,11 +403,13 @@ export function AboutUsSection() {
     <Box
       bg="white"
       as="section"
-      py={{ base: 12, md: 20 }}
+      py={{ base: 24, md: 40 }}
       px={{ base: 6, md: 40 }}
       mx="auto"
       minH="100vh"
-      id="about">
+      id="about"
+      justifyContent="center"
+      alignItems="center">
       <Flex
         direction={{ base: "column", md: "row" }}
         align="center"
