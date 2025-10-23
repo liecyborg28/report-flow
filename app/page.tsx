@@ -89,6 +89,9 @@ export function Navbar() {
         {/* Get Started + Mobile toggle */}
         <HStack>
           <Button
+            onClick={() => {
+              window.location.href = "https://t.me/ReportFlowBot";
+            }}
             display={{ base: "none", md: "inline-flex" }}
             colorPalette="blue"
             px={6}
