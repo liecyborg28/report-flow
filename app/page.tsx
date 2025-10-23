@@ -131,6 +131,9 @@ export function Navbar() {
               </Link>
             ))}
             <Button
+              onClick={() => {
+                window.location.href = "https://t.me/ReportFlowBot";
+              }}
               colorPalette="blue"
               w="full"
               mt={2}
@@ -229,8 +232,10 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}>
             <Button
+              onClick={() => {
+                window.location.href = "https://t.me/ReportFlowBot";
+              }}
               colorPalette="blue"
-              onClick={() => router.replace("/")}
               size="lg"
               px={10}
               boxShadow="lg"
