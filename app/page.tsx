@@ -45,7 +45,7 @@ export function Navbar() {
       top="0"
       left="0"
       w="100%"
-      zIndex="1"
+      zIndex="999"
       bg="rgba(255, 255, 255, 0.2)"
       backdropFilter="blur(20px) saturate(180%)"
       borderBottom="1px solid rgba(255, 255, 255, 0.6)"
@@ -118,7 +118,7 @@ export function Navbar() {
           pb={4}
           px={4}
           display={{ md: "none" }}
-          bg="rgba(255, 255, 255, 0.8)"
+          bg="rgba(255, 255, 255, 0.2)"
           backdropFilter="blur(12px)">
           <Stack as="nav" py={5}>
             {navItems.map((item) => (
@@ -265,7 +265,8 @@ export function FeaturesSection() {
   return (
     <Box
       bg="white"
-      py={20}
+      pt={40}
+      pb={20}
       id="features"
       minH="100vh"
       justifyContent="center"
@@ -354,54 +355,76 @@ export function HowItWorksSection({ steps }) {
   return (
     <Box
       as="section"
-      py={{ base: 12, md: 20 }}
-      px={{ base: 6, md: 10 }}
-      maxW="6xl"
-      mx="auto"
+      pt={40}
+      pb={20}
+      id="flow"
+      position="relative"
+      overflow="hidden"
       minH="100vh"
-      id="flow">
-      {/* Title */}
-      <VStack p={5} textAlign="center" mb={10}>
-        <Heading
-          as="h2"
-          fontSize={{ base: "2xl", md: "3xl" }}
-          fontWeight="semibold"
-          textAlign="center"
-          my={12}
-          color="gray.800">
-          How It Works?
-        </Heading>
-        <Text fontSize="lg" color="gray.600">
-          From Telegram to your inbox — automated reporting made simple.
-        </Text>
-      </VStack>
+      // 🎨 Gradient yang mirip dengan HeroSection
+      bgGradient="linear(to-br, #e0f2fe, #ede9fe, #fdf4ff)">
+      {/* Layer lembut efek dreamy */}
+      <Box
+        position="absolute"
+        inset={0}
+        bg={`
+          radial-gradient(circle at 15% 25%, rgba(147,197,253,0.5) 0%, transparent 70%),
+          radial-gradient(circle at 85% 75%, rgba(216,180,254,0.5) 0%, transparent 70%),
+          radial-gradient(circle at 50% 90%, rgba(251,207,232,0.4) 0%, transparent 75%)
+        `}
+        filter="blur(100px) saturate(140%)"
+        zIndex={0}
+      />
 
-      {/* Steps */}
-      <Flex
-        direction={{ base: "column", md: "row" }} // responsive stacking
-        justify="space-between"
-        align={{ base: "stretch", md: "flex-start" }}
-        gap={{ base: 10, md: 8 }}>
-        {list.map((step: any, i: any) => (
-          <VStack key={i} align="flex-start" p={4} flex="1" textAlign="left">
-            <Flex align="center" gap={4}>
-              <Circle
-                size={{ base: "45px" }}
-                bg="blue.500"
-                color="white"
-                shadow="md">
-                {i + 1}
-              </Circle>
-              <Heading as="h3" color="black" size="md">
-                {step.title}
-              </Heading>
-            </Flex>
-            <Text color="gray.600" fontSize={{ base: "sm" }}>
-              {step.desc}
-            </Text>
-          </VStack>
-        ))}
-      </Flex>
+      <Box
+        position="relative"
+        zIndex={1}
+        px={{ base: 6, md: 10 }}
+        maxW="6xl"
+        mx="auto">
+        {/* Title */}
+        <VStack p={5} textAlign="center" mb={10}>
+          <Heading
+            as="h2"
+            fontSize={{ base: "2xl", md: "3xl" }}
+            fontWeight="semibold"
+            textAlign="center"
+            my={12}
+            color="gray.800">
+            How It Works?
+          </Heading>
+          <Text fontSize="lg" color="gray.600">
+            From Telegram to your inbox — automated reporting made simple.
+          </Text>
+        </VStack>
+
+        {/* Steps */}
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          justify="space-between"
+          align={{ base: "stretch", md: "flex-start" }}
+          gap={{ base: 10, md: 8 }}>
+          {list.map((step: any, i: any) => (
+            <VStack key={i} align="flex-start" p={4} flex="1" textAlign="left">
+              <Flex align="center" gap={4}>
+                <Circle
+                  size={{ base: "45px" }}
+                  bg="blue.500"
+                  color="white"
+                  shadow="md">
+                  {i + 1}
+                </Circle>
+                <Heading as="h3" color="black" size="md">
+                  {step.title}
+                </Heading>
+              </Flex>
+              <Text color="gray.600" fontSize={{ base: "sm" }}>
+                {step.desc}
+              </Text>
+            </VStack>
+          ))}
+        </Flex>
+      </Box>
     </Box>
   );
 }
