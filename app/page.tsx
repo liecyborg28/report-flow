@@ -450,11 +450,11 @@ export function AboutUsSection() {
             fontStyle="italic"
             color="gray.600">
             <Text fontSize={{ base: "md", md: "lg" }}>
-              “Saya membuat ide ini karena pernah merasakan sendiri bahwa
-              membuat laporan kerja harian, mingguan, atau bulanan secara manual
-              di Word atau Excel memakan waktu lama, sehingga saya ingin
-              menghadirkan solusi yang lebih praktis, otomatis terdokumentasi,
-              dan mudah direkap.”
+              “I came up with this idea because I’ve personally experienced how
+              time-consuming it can be to create daily, weekly, or monthly work
+              reports manually in Word or Excel. That’s why I wanted to develop
+              a more practical solution — one that’s automatically documented
+              and easy to summarize.”
             </Text>
           </Box>
 
