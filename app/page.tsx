@@ -27,6 +27,7 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
 const MotionText = motion(Text);
+const MotionImage = motion(Image);
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,13 +60,6 @@ export function Navbar() {
         mx="auto">
         {/* Logo */}
         <Image src="/logo.png" w={10} h={10} alt="navbar logo" />
-        {/* <Text
-          fontWeight="bold"
-          fontSize="xl"
-          color="black"
-          letterSpacing="wide">
-          Report Flow
-        </Text> */}
 
         {/* Menu desktop */}
         <HStack
@@ -154,13 +148,13 @@ export function HeroSection() {
   return (
     <Box
       as="section"
-      zIndex={10}
       position="relative"
       minH="100vh"
       display="flex"
       alignItems="center"
       justifyContent="center"
       overflow="hidden"
+      zIndex={2}
       bgGradient="linear(to-br, #e0f2fe, #ede9fe, #fdf4ff)">
       <Box
         position="absolute"
@@ -182,11 +176,7 @@ export function HeroSection() {
         zIndex={0}
       />
 
-      <Container
-        maxW="5xl"
-        py={{ base: 20, md: 28 }}
-        position="relative"
-        zIndex={1}>
+      <Container maxW="5xl" position="relative" zIndex={1}>
         <VStack textAlign="center">
           <Image src="/logo.png" w={40} h={40} alt="navbar logo" />
           <MotionText
@@ -265,10 +255,10 @@ export function FeaturesSection() {
   return (
     <Box
       bg="white"
-      pt={40}
-      pb={20}
       id="features"
       minH="100vh"
+      py={{ base: 20, md: 0 }}
+      display="flex"
       justifyContent="center"
       alignItems="center">
       <Container maxW="6xl" justifyContent="center" alignItems="center">
@@ -279,7 +269,7 @@ export function FeaturesSection() {
           viewport={{ once: true }}>
           <Heading
             as="h2"
-            fontSize={{ base: "2xl", md: "3xl" }}
+            fontSize={{ base: "3xl", md: "5xl" }}
             fontWeight="semibold"
             textAlign="center"
             my={12}
@@ -355,15 +345,16 @@ export function HowItWorksSection({ steps }) {
   return (
     <Box
       as="section"
-      pt={40}
-      pb={20}
       id="flow"
       position="relative"
       overflow="hidden"
       minH="100vh"
-      // 🎨 Gradient yang mirip dengan HeroSection
+      py={{ base: 20, md: 0 }}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
       bgGradient="linear(to-br, #e0f2fe, #ede9fe, #fdf4ff)">
-      {/* Layer lembut efek dreamy */}
+      {/* Layer efek dreamy */}
       <Box
         position="absolute"
         inset={0}
@@ -386,7 +377,7 @@ export function HowItWorksSection({ steps }) {
         <VStack p={5} textAlign="center" mb={10}>
           <Heading
             as="h2"
-            fontSize={{ base: "2xl", md: "3xl" }}
+            fontSize={{ base: "4xl", md: "5xl" }}
             fontWeight="semibold"
             textAlign="center"
             my={12}
@@ -398,30 +389,38 @@ export function HowItWorksSection({ steps }) {
           </Text>
         </VStack>
 
-        {/* Steps */}
+        {/* Steps dengan animasi berurutan */}
         <Flex
           direction={{ base: "column", md: "row" }}
           justify="space-between"
           align={{ base: "stretch", md: "flex-start" }}
           gap={{ base: 10, md: 8 }}>
-          {list.map((step: any, i: any) => (
-            <VStack key={i} align="flex-start" p={4} flex="1" textAlign="left">
-              <Flex align="center" gap={4}>
-                <Circle
-                  size={{ base: "45px" }}
-                  bg="blue.500"
-                  color="white"
-                  shadow="md">
-                  {i + 1}
-                </Circle>
-                <Heading as="h3" color="black" size="md">
-                  {step.title}
-                </Heading>
-              </Flex>
-              <Text color="gray.600" fontSize={{ base: "sm" }}>
-                {step.desc}
-              </Text>
-            </VStack>
+          {list.map((step, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.3 }} // 🔥 delay berurutan
+              viewport={{ once: true }}
+              style={{ flex: 1 }}>
+              <VStack align="flex-start" p={4} textAlign="left">
+                <Flex align="center" gap={4}>
+                  <Circle
+                    size={{ base: "45px" }}
+                    bg="blue.500"
+                    color="white"
+                    shadow="md">
+                    {i + 1}
+                  </Circle>
+                  <Heading as="h3" color="black" size="md">
+                    {step.title}
+                  </Heading>
+                </Flex>
+                <Text color="gray.600" fontSize={{ base: "sm" }}>
+                  {step.desc}
+                </Text>
+              </VStack>
+            </motion.div>
           ))}
         </Flex>
       </Box>
@@ -434,11 +433,12 @@ export function AboutUsSection() {
     <Box
       bg="white"
       as="section"
-      py={{ base: 24, md: 40 }}
       px={{ base: 6, md: 40 }}
       mx="auto"
       minH="100vh"
+      py={{ base: 20, md: 0 }}
       id="about"
+      display="flex"
       justifyContent="center"
       alignItems="center">
       <Flex
@@ -446,9 +446,9 @@ export function AboutUsSection() {
         align="center"
         justify="space-between"
         gap={{ base: 8, md: 12 }}>
-        {/* Gambar */}
+        {/* Gambar dengan fade-in + sedikit translateY */}
         <Box flex="1" textAlign="center">
-          <Image
+          <MotionImage
             sizes="lg"
             src="/about.jpg"
             alt="About illustration"
@@ -456,12 +456,16 @@ export function AboutUsSection() {
             shadow="md"
             mx="auto"
             w={80}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
           />
         </Box>
 
         {/* Teks / Blockquote */}
         <VStack flex="1" align="flex-start" p={5}>
-          <Heading as="h2" size="3xl" color="gray.800">
+          <Heading as="h2" size={{ base: "3xl", md: "5xl" }} color="gray.800">
             About Us
           </Heading>
 
