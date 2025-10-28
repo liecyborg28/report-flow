@@ -19,11 +19,16 @@ import {
   Stack,
   Circle,
   Image,
-  Blockquote,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import {
+  HamburgerIcon,
+  CloseIcon,
+  TimeIcon,
+  AtSignIcon,
+  EmailIcon,
+} from "@chakra-ui/icons";
 import { useState } from "react";
 
 const MotionText = motion(Text);
@@ -252,6 +257,24 @@ export function HeroSection() {
 }
 
 export function FeaturesSection() {
+  const features = [
+    {
+      title: "Smart Scheduling",
+      desc: "Send reports automatically with intelligent reminders that keep you on track.",
+      icon: TimeIcon,
+    },
+    {
+      title: "AI Reporting",
+      desc: "Describe your report in plain text, and let AI generate a clean, formatted spreadsheet for you.",
+      icon: AtSignIcon,
+    },
+    {
+      title: "Auto Delivery",
+      desc: "Deliver finished reports directly to recipients’ emails — fast, accurate, and effortless.",
+      icon: EmailIcon,
+    },
+  ];
+
   return (
     <Box
       bg="white"
@@ -278,41 +301,45 @@ export function FeaturesSection() {
           </Heading>
         </motion.div>
 
-        <SimpleGrid columns={{ base: 1, md: 3 }} className="flex gap-8">
-          {[
-            {
-              title: "Smart Scheduling",
-              desc: "Send reports automatically — daily, weekly, or yearly — with intelligent reminders that keep you on track.",
-            },
-            {
-              title: "AI Reporting",
-              desc: "Describe your report in plain text, and let AI generate a clean, formatted spreadsheet for you.",
-            },
-            {
-              title: "Auto Delivery",
-              desc: "Deliver finished reports directly to recipients’ emails — fast, accurate, and effortless.",
-            },
-          ].map((feature, i) => (
-            <Card.Root
+        <SimpleGrid columns={{ base: 1, md: 3 }} py={8}>
+          {features.map((feature, i) => (
+            <motion.div
               key={i}
-              p={6}
-              borderRadius="2xl"
-              boxShadow="md"
-              bg="white"
-              transition="all 0.3s ease"
-              _hover={{
-                transform: "translateY(-8px)",
-                boxShadow: "lg",
-              }}>
-              <CardBody>
-                <VStack align="start">
-                  <Text fontSize="xl" fontWeight="semibold" color="gray.800">
-                    {feature.title}
-                  </Text>
-                  <Text color="gray.600">{feature.desc}</Text>
-                </VStack>
-              </CardBody>
-            </Card.Root>
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.3 }}
+              viewport={{ once: true }}>
+              <Card.Root
+                m={6}
+                p={4}
+                borderRadius="2xl"
+                boxShadow="md"
+                bg="white"
+                transition="all 0.3s ease"
+                _hover={{
+                  transform: "translateY(-8px)",
+                  boxShadow: "lg",
+                }}>
+                <CardBody>
+                  <VStack align="start" py={4}>
+                    <Flex
+                      align="center"
+                      justify="center"
+                      bg="blue.100"
+                      color="blue.600"
+                      borderRadius="full"
+                      boxSize={12}
+                      mb={2}>
+                      <feature.icon boxSize={6} />
+                    </Flex>
+                    <Text fontSize="xl" fontWeight="semibold" color="gray.800">
+                      {feature.title}
+                    </Text>
+                    <Text color="gray.600">{feature.desc}</Text>
+                  </VStack>
+                </CardBody>
+              </Card.Root>
+            </motion.div>
           ))}
         </SimpleGrid>
       </Container>
@@ -324,7 +351,7 @@ export function HowItWorksSection({ steps }) {
   const defaultSteps = [
     {
       title: "Create a report template",
-      desc: "Set up a report via our Telegram bot: sender name, activity, reminder (daily/monthly/yearly), and recipient email.",
+      desc: "Set up a report via our Telegram bot: sender name, activity, reminder , and recipient email.",
     },
     {
       title: "Receive automatic reminders",
