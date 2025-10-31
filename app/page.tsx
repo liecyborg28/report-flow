@@ -362,8 +362,8 @@ export function HowItWorksSection({ steps }) {
       desc: "Write the report in plain language and our AI will paraphrase it into a professional, polished report.",
     },
     {
-      title: "Google Sheet delivered",
-      desc: "The AI generates a spreadsheet from your report and sends the Google Sheets link straight to the recipient's email.",
+      title: "Email delivered",
+      desc: "The AI generates a email from your report and sends the email straight to the recipient's email.",
     },
   ];
 
